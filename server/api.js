@@ -1767,6 +1767,24 @@ router
   );
 
 router
+  .route("/project/:projectID/files/:fileID/permanent")
+  .get(
+    middleware.validateZod(
+      ProjectFileValidators.getProjectFileSchema
+    ),
+    projectfilesAPI.getPermanentLink
+  );
+
+router
+  .route("/project/:projectID/files/:fileID/redirect")
+  .get(
+    middleware.validateZod(
+      ProjectFileValidators.getProjectFileSchema
+    ),
+    projectfilesAPI.redirectPermanentLink
+  );
+
+router
   .route("/project/:projectID/files/:fileID/move")
   .put(
     authAPI.verifyRequest,
